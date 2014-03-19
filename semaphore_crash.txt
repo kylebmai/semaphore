@@ -1,0 +1,28 @@
+
+Exception Type:  00000020
+Exception Codes: 0x000000008badf00d
+Highlighted Thread:  2
+
+Application Specific Information:
+com.ipc.USNAVAL failed to resume in time
+
+Elapsed total CPU time (seconds): 1.570 (user 1.570, system 0.000), 7% CPU 
+Elapsed application CPU time (seconds): 0.003, 0% CPU
+
+Thread 2:
+0   libsystem_kernel.dylib        	0x3a128adc semaphore_wait_trap + 8
+1   libsystem_platform.dylib      	0x3a19ce2c _os_semaphore_wait + 8
+2   libdispatch.dylib             	0x3a065a12 _dispatch_barrier_sync_f_slow + 134
+3   CoreData                      	0x2f514c76 _perform + 98
+4   CoreData                      	0x2f51f02c -[NSManagedObjectContext(_NestedContextSupport) executeRequest:withContext:error:] + 236
+5   CoreData                      	0x2f4907e2 -[NSManagedObjectContext executeFetchRequest:error:] + 610
+6   CoreData                      	0x2f4a9c94 -[NSFetchedResultsController performFetch:] + 520
+7   USNAVAL                       	0x0004c544 0x38000 + 83268
+8   USNAVAL                       	0x0005d482 0x38000 + 152706
+9   CoreData                      	0x2f51785e developerSubmittedBlockToNSManagedObjectContextPerform_privateasync + 66
+10  libdispatch.dylib             	0x3a06626e _dispatch_queue_drain$VARIANT$mp + 370
+11  libdispatch.dylib             	0x3a066066 _dispatch_queue_invoke$VARIANT$mp + 38
+12  libdispatch.dylib             	0x3a066cde _dispatch_root_queue_drain + 74
+13  libdispatch.dylib             	0x3a066f54 _dispatch_worker_thread2 + 52
+14  libsystem_pthread.dylib       	0x3a1a1dbc _pthread_wqthread + 296
+15  libsystem_pthread.dylib       	0x3a1a1c80 start_wqthread + 4
