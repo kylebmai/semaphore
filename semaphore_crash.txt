@@ -26,3 +26,34 @@ Thread 2:
 13  libdispatch.dylib             	0x3a066f54 _dispatch_worker_thread2 + 52
 14  libsystem_pthread.dylib       	0x3a1a1dbc _pthread_wqthread + 296
 15  libsystem_pthread.dylib       	0x3a1a1c80 start_wqthread + 4
+
+
+—————————
+
+
+The fetch method
+
++ (NSArray *)fetchRecordsForEntity:(NSString *)entityName sortAttribute:(NSString *)attribute ascending:(BOOL)ascending withMOC:(NSManagedObjectContext *)context
+{
+    //Core data fetching
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSSortDescriptor *sortResultsDescriptor = [NSSortDescriptor sortDescriptorWithKey:attribute ascending:ascending];
+    [fetchRequest setSortDescriptors:@[sortResultsDescriptor]];
+    
+    NSFetchedResultsController *fetchController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
+    
+    NSError *fetchError;
+    if (![fetchController performFetch:&fetchError]) {
+        NSLog(@"Fetch Error %@", fetchError);
+    }
+    else {
+        return [fetchController fetchedObjects];
+    }
+    
+    return nil;
+}
+
